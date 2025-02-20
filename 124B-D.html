@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>124b-d</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+
+        document.getElementById('app').innerHTML = convertTemperature("fahrenheit", 26);
+        
+        //B
+        function convertCelsiusToFahrenheit(celsius){
+            let fahrenheit = celsius*9/5 + 32;
+            return fahrenheit;
+        }
+
+        //C
+        function convertFahrenheitToCelsius(fahrenheit){
+            let celsius = (fahrenheit - 32)*5/9;
+            return celsius;
+        }
+
+        //D
+        function convertTemperature(type, temperature){
+            if(type == "celsius"){
+                let fahrenheit = temperature*9/5 + 32;
+                return fahrenheit;
+            }
+            else if(type == "fahrenheit"){
+                let celsius = (temperature - 32)*5/9;
+                return celsius;
+            }
+        }
+    </script>
+</body>
+</html>

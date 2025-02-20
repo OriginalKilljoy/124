@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>124g copy</title>
+</head>
+
+<body>
+
+    <div id="app"></div>
+
+    <script>
+
+        let isDisabled = false;
+
+        createCalendar();
+
+        function createCalendar(){
+            document.getElementById('app').innerHTML =
+            createNumberSelector(2, 1, 31, 'Day')
+            + createNumberSelector(1, 1, 12, 'Month')
+            + createNumberSelector(2025, 2000, 2050, 'Year')
+        }
+
+        function createNumberSelector(displayNumber, minimum, maximum, type) {
+            let disable = '';
+            if(isDisabled){
+                disable = 'disabled';
+            }
+
+            return /*HTML*/`
+            <div id="${type}Main" style="display: flex;align-items: center;">
+                <div id="${type}" style="font-size: 300%;">${displayNumber}</div>
+                <div style="display: flex; flex-direction: column;align-items: flex-start;">
+                    <button onclick="select${type}(${type}.innerHTML, 'increase', ${minimum}, ${maximum})">▲</button>
+                    ${createButtons(type, 'decrease', minimum, maximum, false)}
+                </div>
+            </div>
+            `;
+        }
+        
+
+        function selectDay(currentDay, amount, minimum, maximum){
+            //1 eller -1
+
+            if(currentDay < maximum && amount == 'increase'){
+                currentDay++
+            }
+            else if(currentDay > minimum && amount == 'decrease'){
+                currentDay--;
+            }
+            if(currentDay == '1' && amount == 'decrease'){
+                isDisabled = true;
+                // createCalendar();
+            }
+            document.getElementById('Day').innerHTML = currentDay;
+        }
+
+        function selectMonth(currentMonth, amount, minimum, maximum){
+            //1 eller -1
+
+            if(currentMonth < maximum && amount == 'increase'){
+                currentMonth++
+            }
+            else if(currentMonth > minimum && amount == 'decrease'){
+                currentMonth--;
+            }
+            document.getElementById('Month').innerHTML = currentMonth;
+        }
+
+        function selectYear(currentYear, amount, minimum, maximum){
+            //1 eller -1
+
+            if(currentYear < maximum && amount == 'increase'){
+                currentYear++
+            }
+            else if(currentYear > minimum && amount == 'decrease'){
+                currentYear--;
+            }
+            document.getElementById('Year').innerHTML = currentYear;
+        }
+
+        //Type = up eller down, min, max
+        function createButtons(type, direction, minimum, maximum, isDisabled){
+            let disable = '';
+            
+            if(isDisabled){
+                disable = 'disabled';
+            }
+            return /*HTML*/`
+                <button onclick="select${type}(${type}.innerHTML, '${direction}', ${minimum}, ${maximum})" ${disable}>▼</button>
+            `;
+        }
+
+    </script>
+</body>
+
+</html>

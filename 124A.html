@@ -9,10 +9,11 @@
     <div id="app"></div>
 
     <script>
+        document.getElementById('app').innerHTML = showOrder('tastatur', 129, 3);
         function showOrder(itemName, itemPrice, itemAmount){
             let totalPrice = itemPrice*itemAmount;
             return /*HTML*/`
-            ${itemAmount}stk ${itemName} a ${itemPrice} = ${totalPrice}
+            ${itemAmount}stk ${itemName} a ${itemPrice}kr = ${totalPrice}kr
             `;
         }
 
