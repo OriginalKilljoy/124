@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>124g</title>
+    <title>124g-i</title>
 </head>
 
 <body>
@@ -20,8 +20,13 @@
             createNumberSelector(2, 1, 31, 'Day')
             + createNumberSelector(1, 1, 12, 'Month')
             + createNumberSelector(2025, 2000, 2050, 'Year')
+            + /*HTML*/`
+            <button onclick="showSelectedDate(Day.innerHTML, Month.innerHTML, Year.innerHTML)">Velg dato</button>
+            <div id="selectedDate"></div>
+            `;
         }
-
+        
+        showSelectedDate(Day.innerHTML, Month.innerHTML, Year.innerHTML)
         function createNumberSelector(displayNumber, minimum, maximum, type) {
 
             return /*HTML*/`
@@ -70,6 +75,12 @@
                 currentYear--;
             }
             document.getElementById('Year').innerHTML = currentYear;
+        }
+
+        function showSelectedDate(day, month, year){
+            document.getElementById('selectedDate').innerHTML = /*HTML*/`
+            <div>Du valgte ${day}.${month}.${year}</div>
+            `;
         }
 
     </script>
